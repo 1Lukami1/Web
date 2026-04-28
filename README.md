@@ -41,7 +41,7 @@ Přehledné porovnání přístupu EU a USA v klíčových oblastech: azylový s
 1. Nahrajte `index.html` do svého GitHub repozitáře
 2. Přejděte do **Settings → Pages**
 3. Jako zdroj vyberte větev `main` a složku `/ (root)`
-4. Web bude dostupný na adrese `https://<váš-username>.github.io/<název-repozitáře>`
+4. Web bude dostupný na adrese `https://1lukami1.github.io/Problematika-EU-a-USA/`
 
 ---
 
