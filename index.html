@@ -6,679 +6,314 @@
 <title>Problémy EU a USA s migranty</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink: #1a1208;
-    --paper: #f5f0e8;
-    --aged: #e8dfc8;
-    --rust: #c0392b;
-    --gold: #b8860b;
-    --blue-eu: #003399;
-    --red-us: #b22234;
-    --muted: #6b5f4e;
-    --border: #c8b89a;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Source Serif 4', Georgia, serif;
-    font-weight: 300;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 1000;
-    opacity: 0.5;
-  }
-
-  header {
-    border-bottom: 3px double var(--border);
-    padding: 0;
-    text-align: center;
-    background: var(--aged);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .header-rule {
-    height: 4px;
-    background: repeating-linear-gradient(90deg, var(--rust) 0, var(--rust) 8px, transparent 8px, transparent 16px);
-    opacity: 0.6;
-  }
-
-  .header-inner {
-    padding: 2.5rem 2rem 2rem;
-  }
-
-  .dateline {
-    font-size: 0.7rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.5rem;
-  }
-
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 900;
-    font-size: clamp(2.2rem, 6vw, 4.5rem);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin-bottom: 0.6rem;
-  }
-
-  .subtitle {
-    font-size: 1rem;
-    font-style: italic;
-    color: var(--muted);
-    max-width: 560px;
-    margin: 0 auto 1.2rem;
-    line-height: 1.5;
-  }
-
-  .header-flags {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin: 1rem 0;
-  }
-
-  .flag-badge {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    font-weight: 400;
-    color: var(--muted);
-    padding: 0.3rem 0.8rem;
-    border: 1px solid var(--border);
-    background: var(--paper);
-  }
-
-  .flag-emoji { font-size: 1.1rem; }
-  .sep { color: var(--border); font-size: 1.2rem; }
-
-  nav {
-    background: var(--ink);
-    padding: 0.6rem 2rem;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 2px solid var(--rust);
-  }
-
-  nav a {
-    color: var(--paper);
-    text-decoration: none;
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 0.4rem 1rem;
-    transition: color 0.2s;
-    display: inline-block;
-  }
-
-  nav a:hover { color: var(--gold); }
-  nav .nav-sep { color: var(--muted); margin: 0 0.2rem; }
-
-  .intro-band {
-    border-bottom: 1px solid var(--border);
-    padding: 2.5rem 2rem;
-    max-width: 780px;
-    margin: 0 auto;
-    text-align: center;
-    animation: fadeUp 0.9s ease both;
-  }
-
-  .intro-band p {
-    font-size: 1.08rem;
-    font-style: italic;
-    color: var(--muted);
-    line-height: 1.8;
-  }
-
-  .intro-band p strong {
-    color: var(--ink);
-    font-style: normal;
-  }
-
-  .main-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 3rem 2rem 4rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border-left: 1px solid var(--border);
-    border-right: 1px solid var(--border);
-  }
-
-  .section {
-    padding: 2.5rem 2.5rem 3rem;
-    animation: fadeUp 0.8s ease both;
-    position: relative;
-  }
-
-  .section-eu {
-    border-right: 1px solid var(--border);
-    background: linear-gradient(180deg, rgba(0,51,153,0.03) 0%, transparent 40%);
-  }
-
-  .section-us {
-    background: linear-gradient(180deg, rgba(178,34,52,0.03) 0%, transparent 40%);
-  }
-
-  .section:nth-child(2) { animation-delay: 0.15s; }
-
-  .section-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-    padding-bottom: 1.2rem;
-    border-bottom: 2px solid var(--border);
-  }
-
-  .section-flag {
-    font-size: 2.8rem;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  .section-title-block h2 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 1.7rem;
-    line-height: 1.15;
-    margin-bottom: 0.2rem;
-  }
-
-  .section-eu .section-title-block h2 { color: var(--blue-eu); }
-  .section-us .section-title-block h2 { color: var(--red-us); }
-
-  .section-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .topic-card {
-    margin-bottom: 1.6rem;
-    padding: 1.2rem 1.4rem;
-    border: 1px solid var(--border);
-    background: var(--paper);
-    position: relative;
-    transition: box-shadow 0.2s, transform 0.2s;
-  }
-
-  .topic-card:hover {
-    box-shadow: 3px 3px 0 var(--border);
-    transform: translate(-1px, -1px);
-  }
-
-  .topic-card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-  }
-
-  .section-eu .topic-card::before { background: var(--blue-eu); }
-  .section-us .topic-card::before { background: var(--red-us); }
-
-  .topic-label {
-    font-size: 0.62rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.4rem;
-  }
-
-  .topic-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin-bottom: 0.6rem;
-    color: var(--ink);
-    line-height: 1.3;
-  }
-
-  .topic-card p {
-    font-size: 0.88rem;
-    line-height: 1.75;
-    color: #3a3020;
-  }
-
-  .pull-quote {
-    margin: 2rem 0 1.8rem;
-    padding: 1rem 1.5rem;
-    border-top: 2px solid var(--border);
-    border-bottom: 2px solid var(--border);
-    text-align: center;
-    font-style: italic;
-    font-size: 1rem;
-    color: var(--muted);
-    line-height: 1.7;
-    background: var(--aged);
-  }
-
-  .stats-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.8rem;
-    margin: 1.5rem 0;
-  }
-
-  .stat-box {
-    padding: 0.9rem;
-    text-align: center;
-    border: 1px solid var(--border);
-    background: var(--aged);
-  }
-
-  .stat-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    font-weight: 900;
-    display: block;
-    line-height: 1.1;
-  }
-
-  .section-eu .stat-number { color: var(--blue-eu); }
-  .section-us .stat-number { color: var(--red-us); }
-
-  .stat-desc {
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    display: block;
-    margin-top: 0.2rem;
-    line-height: 1.4;
-  }
-
-  .full-divider {
-    grid-column: 1 / -1;
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 1rem 0 0;
-  }
-
-  .bottom-section {
-    grid-column: 1 / -1;
-    padding: 2.5rem 2.5rem 0;
-    border-top: 3px double var(--border);
-  }
-
-  .bottom-section h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: var(--ink);
-  }
-
-  .comparison-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.85rem;
-    margin-bottom: 2rem;
-  }
-
-  .comparison-table th {
-    padding: 0.7rem 1rem;
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    border-bottom: 2px solid var(--ink);
-    text-align: left;
-  }
-
-  .comparison-table th:nth-child(2) { color: var(--blue-eu); }
-  .comparison-table th:nth-child(3) { color: var(--red-us); }
-
-  .comparison-table td {
-    padding: 0.7rem 1rem;
-    border-bottom: 1px solid var(--border);
-    line-height: 1.6;
-    vertical-align: top;
-  }
-
-  .comparison-table tr:last-child td { border-bottom: none; }
-
-  .comparison-table td:first-child {
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 400;
-    white-space: nowrap;
-  }
-
-  .comparison-table tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
-
-  footer {
-    background: var(--ink);
-    color: var(--paper);
-    text-align: center;
-    padding: 1.8rem 2rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    border-top: 3px solid var(--rust);
-  }
-
-  footer .footer-author { color: var(--gold); }
-  footer p { opacity: 0.6; margin-top: 0.4rem; }
-
-  .chart-btn {
-    background: var(--paper);
-    border: 1px solid var(--border);
-    color: var(--ink);
-    font-family: 'Source Serif 4', serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.1em;
-    padding: 0.4rem 1rem;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .chart-btn:hover { background: var(--aged); }
-  .chart-btn.active {
-    background: var(--ink);
-    color: var(--paper);
-    border-color: var(--ink);
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .chart-container {
-    max-width: 700px;
-    margin: 0 auto 2rem;
-    background: var(--paper);
-    border: 1px solid var(--border);
-    padding: 1.5rem;
-  }
-
-  @media (max-width: 700px) {
-    .main-container {
-      grid-template-columns: 1fr;
-    }
-    .section-eu { border-right: none; border-bottom: 3px double var(--border); }
-    .stats-row { grid-template-columns: 1fr 1fr; }
-    h1 { font-size: 2rem; }
-    .comparison-table { font-size: 0.78rem; }
-    .comparison-table td:first-child { white-space: normal; }
-  }
+:root{--ink:#1a1208;--paper:#f5f0e8;--aged:#e8dfc8;--rust:#c0392b;--gold:#b8860b;--eu:#003399;--us:#b22234;--muted:#6b5f4e;--brd:#c8b89a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--paper);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;font-weight:300;line-height:1.7;overflow-x:hidden;}
+.header-rule{height:4px;background:repeating-linear-gradient(90deg,var(--rust) 0,var(--rust) 8px,transparent 8px,transparent 16px);opacity:0.6;}
+header{border-bottom:3px double var(--brd);text-align:center;background:var(--aged);}
+.header-inner{padding:2.5rem 2rem 2rem;}
+.dateline{font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;}
+h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2.2rem,6vw,4.5rem);line-height:1.05;letter-spacing:-0.02em;color:var(--ink);margin-bottom:0.6rem;}
+.subtitle{font-size:1rem;font-style:italic;color:var(--muted);max-width:560px;margin:0 auto 1.2rem;}
+.header-flags{display:flex;align-items:center;justify-content:center;gap:1rem;margin:1rem 0;}
+.flag-badge{font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:0.3rem 0.8rem;border:1px solid var(--brd);background:var(--paper);}
+.sep{color:var(--brd);font-size:1.2rem;}
+nav{background:var(--ink);padding:0.6rem 2rem;text-align:center;position:sticky;top:0;z-index:100;border-bottom:2px solid var(--rust);}
+nav button{background:none;border:none;color:var(--paper);font-family:'Source Serif 4',Georgia,serif;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;padding:0.4rem 1rem;cursor:pointer;transition:color 0.2s;}
+nav button:hover,nav button.active{color:var(--gold);}
+nav .ns{color:var(--muted);margin:0 0.1rem;}
+#app{transition:opacity 0.2s,transform 0.2s;}
+#app.out{opacity:0;transform:translateY(10px);}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.page-wrap{animation:up 0.35s ease both;}
+.intro{border-bottom:1px solid var(--brd);padding:2.5rem 2rem;max-width:780px;margin:0 auto;text-align:center;}
+.intro p{font-size:1.05rem;font-style:italic;color:var(--muted);line-height:1.8;}
+.intro strong{color:var(--ink);font-style:normal;}
+.grid{max-width:1100px;margin:0 auto;padding:3rem 2rem 4rem;display:grid;grid-template-columns:1fr 1fr;border-left:1px solid var(--brd);border-right:1px solid var(--brd);}
+.col{padding:2.5rem;}
+.col-eu{border-right:1px solid var(--brd);background:linear-gradient(180deg,rgba(0,51,153,0.03) 0%,transparent 40%);}
+.col-us{background:linear-gradient(180deg,rgba(178,34,52,0.03) 0%,transparent 40%);}
+.col-full{grid-column:1/-1;border-top:3px double var(--brd);padding:2.5rem;}
+.col-hr{grid-column:1/-1;border:none;border-top:1px solid var(--brd);}
+.sec-head{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.8rem;padding-bottom:1.2rem;border-bottom:2px solid var(--brd);}
+.flag{font-size:2.8rem;line-height:1;flex-shrink:0;}
+.sec-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.7rem;line-height:1.15;margin-bottom:0.2rem;}
+.col-eu .sec-head h2{color:var(--eu);}
+.col-us .sec-head h2{color:var(--us);}
+.lbl2{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);}
+.srow{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin:1.5rem 0;}
+.sbox{padding:0.9rem;text-align:center;border:1px solid var(--brd);background:var(--aged);}
+.snum{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;display:block;line-height:1.1;}
+.eu-n{color:var(--eu);}
+.us-n{color:var(--us);}
+.sdesc{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);display:block;margin-top:0.2rem;line-height:1.4;}
+.card{margin-bottom:1.4rem;padding:1.1rem 1.3rem;border:1px solid var(--brd);background:var(--paper);position:relative;transition:box-shadow 0.2s,transform 0.2s;}
+.card:hover{box-shadow:3px 3px 0 var(--brd);transform:translate(-1px,-1px);}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+.eu-c::before,.col-eu .card::before{background:var(--eu);}
+.us-c::before,.col-us .card::before{background:var(--us);}
+.lbl{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:0.3rem;}
+.card h3{font-family:'Playfair Display',serif;font-size:1.02rem;font-weight:700;margin-bottom:0.5rem;color:var(--ink);line-height:1.3;}
+.card p{font-size:0.87rem;line-height:1.75;color:#3a3020;}
+.pq{margin:1.8rem 0;padding:1rem 1.4rem;border-top:2px solid var(--brd);border-bottom:2px solid var(--brd);text-align:center;font-style:italic;font-size:0.97rem;color:var(--muted);background:var(--aged);}
+.mbtn{display:inline-block;margin-top:1rem;padding:0.5rem 1.2rem;border:1px solid var(--brd);background:var(--aged);font-family:'Source Serif 4',serif;font-size:0.76rem;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;color:var(--ink);}
+.mbtn:hover{background:var(--ink);color:var(--paper);}
+.detail{max-width:900px;margin:0 auto;padding:2.5rem 2rem 5rem;}
+.dhero{text-align:center;padding:2rem 1rem 1.5rem;border-bottom:3px double var(--brd);margin-bottom:2rem;background:var(--aged);}
+.dhero .df{font-size:3.5rem;display:block;margin-bottom:0.6rem;}
+.dhero h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.6rem,4vw,2.6rem);margin-bottom:0.4rem;}
+.dhero p{font-style:italic;color:var(--muted);font-size:0.93rem;max-width:520px;margin:0 auto;}
+.dstats{display:grid;grid-template-columns:repeat(4,1fr);gap:0.7rem;margin:1.5rem 0;}
+.stitle{font-family:'Playfair Display',serif;font-size:1.22rem;font-weight:700;margin:2rem 0 0.8rem;padding-bottom:0.4rem;border-bottom:2px solid var(--brd);}
+.eu-t{color:var(--eu);}
+.us-t{color:var(--us);}
+.tl{border-left:3px solid var(--brd);padding-left:1.3rem;margin:1.2rem 0;}
+.tli{margin-bottom:1.2rem;position:relative;}
+.tli::before{content:'';position:absolute;left:-1.77rem;top:0.45rem;width:9px;height:9px;border-radius:50%;border:2px solid var(--paper);}
+.eu-tl .tli::before{background:var(--eu);}
+.us-tl .tli::before{background:var(--us);}
+.ty{font-weight:700;font-size:0.9rem;color:var(--muted);}
+.tt{font-size:0.84rem;color:#3a3020;line-height:1.65;margin-top:0.1rem;}
+.back{display:inline-block;margin-bottom:1.5rem;padding:0.4rem 1rem;border:1px solid var(--brd);background:var(--paper);font-family:'Source Serif 4',serif;font-size:0.74rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;color:var(--muted);transition:all 0.2s;}
+.back:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.alone{max-width:1000px;margin:0 auto;padding:2.5rem 2rem 5rem;}
+.alone>h2{font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:700;text-align:center;margin-bottom:0.4rem;}
+.psub{text-align:center;font-style:italic;color:var(--muted);margin-bottom:2rem;font-size:0.9rem;}
+.tcol{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem;}
+.ctable{width:100%;border-collapse:collapse;font-size:0.84rem;margin-bottom:2rem;}
+.ctable th{padding:0.65rem 0.9rem;font-family:'Playfair Display',serif;font-weight:700;font-size:0.92rem;border-bottom:2px solid var(--ink);text-align:left;}
+.ctable th:nth-child(2){color:var(--eu);}
+.ctable th:nth-child(3){color:var(--us);}
+.ctable td{padding:0.65rem 0.9rem;border-bottom:1px solid var(--brd);line-height:1.55;vertical-align:top;}
+.ctable td:first-child{font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.ctable tr:last-child td{border-bottom:none;}
+.ctable tr:nth-child(even) td{background:rgba(0,0,0,0.02);}
+.cbtn{background:var(--paper);border:1px solid var(--brd);color:var(--ink);font-family:'Source Serif 4',serif;font-size:0.76rem;letter-spacing:0.09em;padding:0.38rem 0.9rem;cursor:pointer;transition:all 0.2s;}
+.cbtn:hover{background:var(--aged);}
+.cbtn.on{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.cwrap{max-width:760px;margin:0 auto 1.5rem;background:var(--paper);border:1px solid var(--brd);padding:1.4rem;}
+footer{background:var(--ink);color:var(--paper);text-align:center;padding:1.8rem 2rem;font-size:0.75rem;letter-spacing:0.1em;border-top:3px solid var(--rust);}
+.fa{color:var(--gold);}
+footer p{opacity:0.6;margin-top:0.3rem;}
+@media(max-width:680px){
+  .grid{grid-template-columns:1fr;}
+  .col-eu{border-right:none;border-bottom:3px double var(--brd);}
+  .dstats{grid-template-columns:1fr 1fr;}
+  .tcol{grid-template-columns:1fr;}
+  h1{font-size:2rem;}
+  nav button{padding:0.35rem 0.5rem;font-size:0.63rem;}
+  .ctable td:first-child{white-space:normal;}
+}
 </style>
 </head>
 <body>
-
 <div class="header-rule"></div>
 <header>
-  <div class="header-inner">
-    <div class="dateline">Analýza · 2026 · Mezinárodní migrace</div>
-    <h1>Problémy EU a USA<br>s migranty</h1>
-    <p class="subtitle">Přehled migračních toků, politických výzev a přístupů k jejich řešení v Evropské unii a Spojených státech amerických</p>
-    <div class="header-flags">
-      <span class="flag-badge"><span class="flag-emoji">🇪🇺</span> Evropská unie</span>
-      <span class="sep">—</span>
-      <span class="flag-badge"><span class="flag-emoji">🇺🇸</span> Spojené státy</span>
-    </div>
-  </div>
+<div class="header-inner">
+<div class="dateline">Analýza · 2026 · Mezinárodní migrace</div>
+<h1>Problémy EU a USA<br>s migranty</h1>
+<p class="subtitle">Přehled migračních toků, politických výzev a přístupů k jejich řešení</p>
+<div class="header-flags">
+<span class="flag-badge">🇪🇺 Evropská unie</span>
+<span class="sep">—</span>
+<span class="flag-badge">🇺🇸 Spojené státy</span>
+</div>
+</div>
 </header>
-
 <nav>
-  <a href="#eu">Evropská unie</a>
-  <span class="nav-sep">·</span>
-  <a href="#usa">Spojené státy</a>
-  <span class="nav-sep">·</span>
-  <a href="#graf">Graf</a>
-  <span class="nav-sep">·</span>
-  <a href="#srovnani">Srovnění</a>
+<button onclick="go('home')" data-p="home" class="active">Úvod</button><span class="ns">·</span>
+<button onclick="go('eu')" data-p="eu">Evropská unie</button><span class="ns">·</span>
+<button onclick="go('usa')" data-p="usa">Spojené státy</button><span class="ns">·</span>
+<button onclick="go('graf')" data-p="graf">Graf</button><span class="ns">·</span>
+<button onclick="go('srovnani')" data-p="srovnani">Srovnání</button>
 </nav>
-
-<div class="intro-band">
-  <p>Nekontrolovaná migrace způsobuje <strong>vážné problémy</strong> v EU i USA – od přetíženosti systémů přes nárůst kriminality až po politické krize. Obě velmoci selhávají v odpovědném řízení migračních toků.</p>
-</div>
-
-<div class="main-container">
-
-  <section class="section section-eu" id="eu">
-    <div class="section-header">
-      <div class="section-flag">🇪🇺</div>
-      <div class="section-title-block">
-        <h2>Evropská unie</h2>
-        <span class="section-label">27 členských států · Schengenský prostor</span>
-      </div>
-    </div>
-
-    <div class="stats-row">
-      <div class="stat-box">
-        <span class="stat-number">4,3M</span>
-        <span class="stat-desc">žadatelů o azyl v EU (2015–2016)</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-number">27</span>
-        <span class="stat-desc">členských států – 27 různých přístupů</span>
-      </div>
-    </div>
-
-    <div class="topic-card">
-      <div class="topic-label">Ekonomika</div>
-      <h3>Obrovská zátěž pro veřejné finance</h3>
-      <p>Integrace migrantů stojí členské státy stovky miliard eur ročně – ubytování, sociální dávky, jazykové kurzy, zdravotní péče.</p>
-    </div>
-
-    <div class="topic-card">
-      <div class="topic-label">Politika</div>
-      <h3>Totální selhání Dublinského systému</h3>
-      <p>Dublinský systém se zcela zhroutil. Migranti procházejí přes hranice bez registrace.</p>
-    </div>
-
-    <div class="pull-quote">
-      „Ztráta kontroly nad hranicemi je ztrátou kontroly nad státem."
-    </div>
-
-    <div class="topic-card">
-      <div class="topic-label">Bezpečnost</div>
-      <h3>Nárůst kriminality a bezpečnostní rizika</h3>
-      <p>Policejní statistiky ukazují nadprůměrné zastoupení migrantů mezi pachateli násilných trestných činů.</p>
-    </div>
-  </section>
-
-  <section class="section section-us" id="usa">
-    <div class="section-header">
-      <div class="section-flag">🇺🇸</div>
-      <div class="section-title-block">
-        <h2>Spojené státy</h2>
-        <span class="section-label">Federální systém · Jižní hranice s Mexikem</span>
-      </div>
-    </div>
-
-    <div class="stats-row">
-      <div class="stat-box">
-        <span class="stat-number">2,4M</span>
-        <span class="stat-desc">zadržených na hranici (2023)</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-number">11M+</span>
-        <span class="stat-desc">odhadovaných nezdokumentovaných</span>
-      </div>
-    </div>
-
-    <div class="topic-card">
-      <div class="topic-label">Hranice</div>
-      <h3>Ztráta kontroly nad jižní hranicí</h3>
-      <p>Jižní hranice je de facto otevřená. V roce 2023 bylo zadrženo 2,4 milionu pokusů o přechod.</p>
-    </div>
-
-    <div class="topic-card">
-      <div class="topic-label">Politika</div>
-      <h3>Politická paralýza – roky bez řešení</h3>
-      <p>Kongres nedokázal přijmout komplexní imigrační reformu od roku 1986.</p>
-    </div>
-
-    <div class="pull-quote">
-      „Stát, který neumí kontrolovat, kdo vstupuje na jeho území, ztrácí suverenitu."
-    </div>
-
-    <div class="topic-card">
-      <div class="topic-label">Drogy a kriminalita</div>
-      <h3>Fentanyl a organizovaný zločin</h3>
-      <p>Přes hranici proudí fentanyl zodpovědný za 70 000+ smrtí ročně.</p>
-    </div>
-  </section>
-
-  <hr class="full-divider">
-
-  <section class="bottom-section" id="srovnani">
-    <h2>Srovnění přístupů EU a USA</h2>
-    <table class="comparison-table">
-      <thead>
-        <tr>
-          <th>Oblast</th>
-          <th>🇪🇺 Evropská unie</th>
-          <th>🇺🇸 Spojené státy</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Hlavní problém</td>
-          <td>Příliv přes Středomoří a Balkán</td>
-          <td>Otevřená jižní hranice</td>
-        </tr>
-        <tr>
-          <td>Selhání systému</td>
-          <td>Dublinský systém nefunguje</td>
-          <td>Kongres 40 let bez reformy</td>
-        </tr>
-        <tr>
-          <td>Bezpečnost</td>
-          <td>Teroristické útoky, no-go zóny</td>
-          <td>Fentanyl, kartely</td>
-        </tr>
-        <tr>
-          <td>Finanční zátěž</td>
-          <td>Desítky miliard eur ročně</td>
-          <td>Miliardy dolarů ročně</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section class="bottom-section" id="graf" style="border-top: 3px double var(--border); margin-top: 0;">
-    <h2>📈 Vývoj migrace v čase</h2>
-    <p style="text-align:center; font-style:italic; color:var(--muted); font-size:0.9rem; margin-bottom:1.5rem;">Počty žadatelů o azyl v EU a překročení hranice v USA (v tisících)</p>
-
-    <div style="display:flex; gap:0.7rem; justify-content:center; margin-bottom:1.5rem; flex-wrap:wrap;">
-      <button class="chart-btn active" onclick="showChart(event, 'both')">EU + USA</button>
-      <button class="chart-btn" onclick="showChart(event, 'eu')">Pouze EU</button>
-      <button class="chart-btn" onclick="showChart(event, 'usa')">Pouze USA</button>
-    </div>
-
-    <div class="chart-container">
-      <canvas id="migrationChart" width="700" height="200"></canvas>
-    </div>
-
-    <p style="text-align:center; font-size:0.7rem; color:var(--muted);">
-      Zdroje: Eurostat, UNHCR, U.S. Customs and Border Protection
-    </p>
-  </section>
-
-</div>
-
-<footer>
-  <div>Projekt vytvořil <span class="footer-author">1Lukami1</span></div>
-  <p>© 2026 · Problémy EU a USA s migranty</p>
-</footer>
-
+<div id="app"></div>
+<footer><div>Projekt vytvořil <span class="fa">1Lukami1</span></div><p>© 2026 · Problémy EU a USA s migranty</p></footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 <script>
-  const labels = ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'];
-  const euData = [435, 627, 1322, 1260, 705, 634, 738, 461, 648, 966, 1140];
-  const usaData = [420, 487, 337, 415, 310, 404, 977, 458, 1734, 2378, 2475];
+const YR=['2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023'];
+const ED=[435,627,1322,1260,705,634,738,461,648,966,1140];
+const UD=[420,487,337,415,310,404,977,458,1734,2378,2475];
+let CI=null;
+const EDS={label:'🇪🇺 EU – žadatelé (tis.)',data:ED,borderColor:'#003399',backgroundColor:'rgba(0,51,153,0.08)',borderWidth:2.5,pointBackgroundColor:'#003399',pointRadius:4,tension:0.3,fill:true};
+const UDS={label:'🇺🇸 USA – přechody (tis.)',data:UD,borderColor:'#b22234',backgroundColor:'rgba(178,34,52,0.07)',borderWidth:2.5,pointBackgroundColor:'#b22234',pointRadius:4,tension:0.3,fill:true};
 
-  let chart = null;
+function card(lbl,h,p,cls){return`<div class="card ${cls||''}"><div class="lbl">${lbl}</div><h3>${h}</h3><p>${p}</p></div>`;}
+function sbox(n,d,cls){return`<div class="sbox"><span class="snum ${cls}">${n}</span><span class="sdesc">${d}</span></div>`;}
+function tli(y,t){return`<div class="tli"><div class="ty">${y}</div><div class="tt">${t}</div></div>`;}
 
-  function showChart(event, type) {
-    const ctx = document.getElementById('migrationChart').getContext('2d');
+const P={
+home:()=>`<div class="page-wrap">
+<div class="intro"><p>Nekontrolovaná migrace způsobuje <strong>vážné problémy</strong> v EU i USA – od přetíženosti systémů přes nárůst kriminality až po politické krize. Obě velmoci selhávají v řízení migrace.</p></div>
+<div class="grid">
+<div class="col col-eu">
+<div class="sec-head"><div class="flag">🇪🇺</div><div><h2>Evropská unie</h2><span class="lbl2">27 členských států · Schengenský prostor</span></div></div>
+<div class="srow">${sbox('4,3M','žadatelů o azyl (2015–16)','eu-n')}${sbox('27','členských států – 27 přístupů','eu-n')}</div>
+${card('Ekonomika','Obrovská zátěž pro veřejné finance','Integrace migrantů stojí stovky miliard eur ročně. Jen Německo vydalo v roce 2023 přes 20 mld. €. Velká část příchozích zůstává závislá na sociální podpoře.')}
+${card('Politika','Totální selhání Dublinského systému','Systém se zcela zhroutil. Migranti procházejí bez registrace, státy si přehazují odpovědnost a kvóty nikdy nefungovaly.')}
+<div class="pq">„Ztráta kontroly nad hranicemi je ztrátou kontroly nad státem."</div>
+${card('Bezpečnost','Nárůst kriminality a bezpečnostní rizika','Teroristické útoky v Paříži (2015) a Berlíně (2016) provedly osoby přicestovalé jako migranti. Statistiky ukazují nadprůměrné zastoupení migrantů v násilné kriminalitě.')}
+<button class="mbtn" onclick="go('eu')">→ Více o EU</button>
+</div>
+<div class="col col-us">
+<div class="sec-head"><div class="flag">🇺🇸</div><div><h2>Spojené státy</h2><span class="lbl2">Federální systém · Jižní hranice s Mexikem</span></div></div>
+<div class="srow">${sbox('2,47M','zadržených na hranici (2023)','us-n')}${sbox('11M+','nezdokumentovaných imigrantů','us-n')}</div>
+${card('Hranice','Ztráta kontroly nad jižní hranicí','Jižní hranice je de facto otevřená. V roce 2023 rekordních 2,47 mil. pokusů o ilegální přechod. Skutečná čísla jsou ještě vyšší díky tzv. gotaways.')}
+${card('Politika','Politická paralýza – roky bez řešení','Kongres nedokázal přijmout komplexní imigrační reformu od roku 1986. Výsledkem jsou přeplněná záchytná zařízení a miliony nevyřízených žádostí.')}
+<div class="pq">„Stát, který neumí kontrolovat, kdo vstupuje na jeho území, ztrácí suverenitu."</div>
+${card('Drogy','Fentanyl a organizovaný zločin','Přes hranici proudí fentanyl zodpovědný za 70 000+ smrtí ročně. Mexické kartely kontrolují přeshraniční pašování lidí i drog.')}
+<button class="mbtn" onclick="go('usa')">→ Více o USA</button>
+</div>
+<hr class="col-hr">
+<div class="col-full" style="text-align:center;padding-bottom:2rem;"><p style="font-style:italic;color:var(--muted);">Pro detailní přehled klikni na sekci v navigaci nahoře.</p></div>
+</div></div>`,
+
+eu:()=>`<div class="page-wrap"><div class="detail">
+<button class="back" onclick="go('home')">← Zpět</button>
+<div class="dhero"><span class="df">🇪🇺</span><h2 style="color:var(--eu)">Evropská unie a migrace</h2><p>Příčiny, dopady a selhání systému – komplexní přehled</p></div>
+<div class="dstats">${sbox('1,32M','rekord žadatelů 2015','eu-n')}${sbox('30 000+','mrtvých ve Středomoří od 2014','eu-n')}${sbox('20 mld€','výdaje Německa (2023)','eu-n')}${sbox('6 let','průměrné čekání na azyl','eu-n')}</div>
+<div class="stitle eu-t">Ekonomické dopady</div>
+${card('Veřejné finance','Miliardová zátěž pro daňové poplatníky','Integrace migrantů stojí EU stovky miliard eur ročně. Jen Německo vydalo v roce 2023 přes 20 miliard eur na ubytování, dávky, jazykové kurzy a zdravotní péči. Švédsko, které přijalo nejvíce migrantů per capita, čelí strukturálnímu deficitu sociálního systému.','eu-c')}
+${card('Trh práce','Nízká míra integrace do pracovního trhu','Data Eurostatu ukazují, že po pěti letech pobytu je zaměstnaných méně než 50 % dospělých migrantů z mimoevropských zemí. Evropa potřebuje kvalifikované pracovníky, ale přijímá převážně nekvalifikované migranty závislé na podpoře.','eu-c')}
+<div class="pq">„Ztráta kontroly nad hranicemi je ztráta kontroly nad státem. Většina Evropanů to cítí – politici reagují se zpožděním let."</div>
+<div class="stitle eu-t">Politické selhání</div>
+${card('Dublinský systém','Systém, který nikdy nefungoval','Dublinský systém z roku 1990 stanovuje, že za azylové řízení zodpovídá první bezpečná země EU. Přenáší obrovskou zátěž na hraniční státy – Itálii, Řecko, Španělsko – které odmítají řádně registrovat migranty. Výsledkem je chaos.','eu-c')}
+${card('Kvóty','Přerozdělování, které selhalo','Komise navrhla v roce 2015 povinné kvóty. Visegrádská čtyřka odmítla. Ze slíbených 160 000 přemístění bylo provedeno méně než 35 000. Solidarita v rámci EU se ukázala jako prázdné slovo.','eu-c')}
+${card('Dohody s třetími zeměmi','Placení autoritářů místo řešení','EU zaplatila Turecku 6 mld. € za spolupráci v roce 2016. Podobné dohody s Libyí, Marokem a Tuniskem jsou kritizovány – EU platí autoritářům, aby za ni řešili migraci, bez ohledu na podmínky zadržování.','eu-c')}
+<div class="stitle eu-t">Bezpečnostní rizika</div>
+${card('Terorismus','Migrační trasy zneužité teroristy','Útoky v Paříži (2015, 130 mrtvých) a Berlíně (2016, 12 mrtvých) provedli lidé přicestovalí jako migranti nebo žadatelé o azyl. Bezpečnostní složky varují, že důkladné prověřování není při masovém přílivu možné.','eu-c')}
+${card('Kriminalita','Statistiky, které politici neradi ukazují','Policejní statistiky v Německu, Švédsku a Francii opakovaně ukazují výrazně nadprůměrné zastoupení migrantů mezi pachateli násilných trestných činů. Švédsko zažívá dramatický nárůst gangového násilí spojeného s migrantskými skupinami.','eu-c')}
+${card('No-go zóny','Čtvrti mimo kontrolu státu','Švédská policie označila 61 oblastí jako zvláště zranitelné. Francouzská předměstí pravidelně hoří při nepokojích. Belgický Molenbeek byl popsán jako džihádistické hnízdo v srdci Evropy.','eu-c')}
+<div class="stitle eu-t">Politické důsledky</div>
+${card('Vzestup pravice','Selhání mainstreamových stran','AfD v Německu je druhou nejsilnější stranou. Národní sdružení ve Francii má historicky nejvyšší podporu. Wilders vyhrál v Nizozemsku. Meloni vládne v Itálii. Všechny mají přísnou migrační politiku jako klíčový program.','eu-c')}
+<div class="stitle eu-t">Časová osa</div>
+<div class="tl eu-tl">
+${tli('2011','Arabské jaro spouští vlnu migrace ze severní Afriky. Lampedusa se stává symbolem krize.')}
+${tli('2015','Migrační krize vrcholí – přes 1,3 mil. žadatelů. Merkel: „Wir schaffen das." EU navrhuje kvóty, Visegrád odmítá.')}
+${tli('2016','Dohoda EU–Turecko za 6 mld. €. Útok v Berlíně. Brexit motivovaný částečně odporem k migraci.')}
+${tli('2021','Bělorusko posílá migranty na polskou hranici jako hybridní útok. Polsko staví plot.')}
+${tli('2024–2026','Pravicové strany vítězí napříč Evropou. Německo zavádí kontroly na všech hranicích. Nový Pakt o migraci – účinnost zpochybňována.')}
+</div>
+</div></div>`,
+
+usa:()=>`<div class="page-wrap"><div class="detail">
+<button class="back" onclick="go('home')">← Zpět</button>
+<div class="dhero"><span class="df">🇺🇸</span><h2 style="color:var(--us)">USA a migrační krize</h2><p>Rekordní počty na jižní hranici, politická paralýza a rozvrat společnosti</p></div>
+<div class="dstats">${sbox('2,47M','zadržených – rekord 2023','us-n')}${sbox('11–12M','nezdokumentovaných imigrantů','us-n')}${sbox('70 000+','smrtí na fentanyl ročně','us-n')}${sbox('40 let','bez komplexní reformy','us-n')}</div>
+<div class="stitle us-t">Situace na hranici</div>
+${card('Jižní hranice','3 200 km de facto otevřené hranice','Navzdory tisícům agentů Border Patrol je situace mimo kontrolu. V roce 2023 bylo rekordních 2,47 mil. pokusů o ilegální přechod. Počet gotaways – těch, kteří přešli bez záznamu – dosahuje dalšího půl milionu ročně.','us-c')}
+${card('Původ migrantů','Přicházejí z celého světa','Dnes přicházejí Venezuelci, Kubánci, Haiťané, Guatemalci i migranti z Číny, Indie a Ruska. Kartely účtují za převedení tisíce dolarů – smuggling je miliardový byznys financující narkoterrorismus.','us-c')}
+<div class="pq">„Stát, který neumí kontrolovat, kdo vstupuje na jeho území, přestává být skutečně suverénním státem."</div>
+<div class="stitle us-t">Politická paralýza</div>
+${card('Kongres','40 let bez reformy','Poslední reforma z roku 1986 amnestovala 3 miliony imigrantů. Příslib zpřísnění hranic nebyl dodržen. Demokraté odmítají přísné kontroly, Republikáni odmítají amnestii. Backlog soudů přes 3 miliony případů.','us-c')}
+${card('Azylový systém','Systém na pokraji kolapsu','Průměrná čekací doba na azylové řízení přesahuje 4 roky. Systém catch and release funguje jako magnet – velká část propuštěných se k soudu nikdy nedostaví.','us-c')}
+${card('Politické střety','DACA, zeď a výjimečný stav','Trump vyhlásil výjimečný stav a stavěl zeď. Biden opatření zrušil – přílivy okamžitě vzrostly na rekordy. Trump po návratu v roce 2025 zahájil masové deportační operace po celé zemi.','us-c')}
+<div class="stitle us-t">Drogy a organizovaný zločin</div>
+${card('Fentanyl','Smrtící vlna přes hranici','Fentanyl je 50–100× silnější než morfium. V roce 2023 zemřelo na předávkování opiáty přes 70 000 Američanů – více než padlo vojáků ve Vietnamu. Vyrábí se v Mexiku z čínských prekurzorů.','us-c')}
+${card('Kartely','Mexické kartely na americkém území','Kartely Sinaloa a CJNG kontrolují jižní hranici. Vybírají 2 000–15 000 USD za převedení osoby a provozují distribuční sítě ve více než 1 000 amerických městech. FBI je označuje za největší hrozbu pro USA.','us-c')}
+<div class="stitle us-t">Dopady na americká města</div>
+${card('Sanctuary cities','Přetížená útočiště se hroutí','New York, Chicago a Denver odmítají spolupracovat s deportacemi. Po roce 2022 je zaplavily desítky tisíc migrantů z Texasu. NYC utratilo přes 4 miliardy dolarů. Starosta prohlásil, že migrace město zničí.','us-c')}
+${card('Veřejné služby','Školy, nemocnice a útulky na limitu','Nemocnice v El Pasu a Eagle Pass hlásí kapacitní krize. Školy přijímají tisíce žáků bez angličtiny. Lokální komunity nesou náklady federálního selhání bez adekvátní kompenzace.','us-c')}
+<div class="stitle us-t">Časová osa</div>
+<div class="tl us-tl">
+${tli('1986','Reagan amnestuje 3 mil. imigrantů. Příslib zpřísnění hranic není dodržen. Od té doby žádná reforma.')}
+${tli('2018','Trump zavádí zero tolerance – oddělování dětí od rodičů na hranici. Masový odpor veřejnosti.')}
+${tli('2021','Biden ruší Trumpova opatření. Příliv migrantů raketově roste a atakuje nové rekordy každý měsíc.')}
+${tli('2022–2023','Historické rekordy. Texas posílá migranty autobusy do demokratických měst. New York a Chicago v krizi.')}
+${tli('2024','Migrace klíčové téma voleb. Trump vyhrává částečně i díky tomuto tématu.')}
+${tli('2025–2026','Trump zahajuje masové deportace. ICE provádí razzie po celé zemi. Počty na hranici výrazně klesají.')}
+</div>
+</div></div>`,
+
+graf:()=>`<div class="page-wrap"><div class="alone">
+<button class="back" onclick="go('home')">← Zpět</button>
+<h2>📈 Vývoj migrace v čase</h2>
+<p class="psub">Počty žadatelů o azyl v EU a ilegálních překročení hranice v USA (v tisících), 2013–2023</p>
+<div style="display:flex;gap:0.6rem;justify-content:center;margin-bottom:1.1rem;flex-wrap:wrap;">
+<button class="cbtn on" onclick="sw('both',this)">🌍 EU + USA</button>
+<button class="cbtn" onclick="sw('eu',this)">🇪🇺 Pouze EU</button>
+<button class="cbtn" onclick="sw('usa',this)">🇺🇸 Pouze USA</button>
+</div>
+<div class="cwrap"><canvas id="mc" height="200"></canvas></div>
+<p style="text-align:center;font-size:0.69rem;color:var(--muted);margin-bottom:2rem;">Zdroje: Eurostat, UNHCR, U.S. Customs and Border Protection · Data zaokrouhlená</p>
+<div class="tcol">
+${card('EU – klíčové roky','Migrační krize 2015–2016','Dramatický vrchol v roce 2015 – přes 1,3 mil. žadatelů. Po dohodě s Tureckem čísla klesla, ale od roku 2021 opět rostou a v roce 2023 atakují 1,1 milionu.','eu-c')}
+${card('USA – klíčové roky','Explozivní růst po roce 2020','Po Bidenově inauguraci v roce 2021 počty raketově vzrostly. V roce 2023 historický rekord 2,47 mil. – téměř šestinásobek oproti roku 2017.','us-c')}
+</div>
+</div></div>`,
+
+srovnani:()=>`<div class="page-wrap"><div class="alone">
+<button class="back" onclick="go('home')">← Zpět</button>
+<h2>⚖️ Srovnání EU a USA</h2>
+<p class="psub">Přehled klíčových rozdílů a podobností v přístupu k migraci</p>
+<table class="ctable">
+<thead><tr><th>Oblast</th><th>🇪🇺 Evropská unie</th><th>🇺🇸 Spojené státy</th></tr></thead>
+<tbody>
+<tr><td>Hlavní problém</td><td>Nekontrolovaný příliv přes Středomoří a Balkán</td><td>Otevřená jižní hranice, rekordní počty přechodů</td></tr>
+<tr><td>Selhání systému</td><td>Dublinský systém nefunguje, kvóty odmítnuty</td><td>Kongres 40 let bez reformy, soudy přetíženy</td></tr>
+<tr><td>Bezpečnostní rizika</td><td>Teroristické útoky, no-go zóny, nárůst kriminality</td><td>Fentanyl, kartely, rekordní počty smrtí na drogy</td></tr>
+<tr><td>Finanční zátěž</td><td>Desítky miliard eur ročně za integraci</td><td>Miliardy USD – federální i místní úroveň</td></tr>
+<tr><td>Integrace</td><td>Rozsáhlé selhání – gettoizace, radikalizace</td><td>Miliony nezdokumentovaných bez jasného statusu</td></tr>
+<tr><td>Politická reakce</td><td>Nárůst pravice – AfD, RN, FPÖ, PVV...</td><td>Migrace klíčové téma voleb 2024 a 2026</td></tr>
+<tr><td>Hraniční kontrola</td><td>Frontex + Schengen – s velkými mezerami</td><td>Border Patrol, CBP, ICE – přetížené kapacity</td></tr>
+<tr><td>Dohody s třetími zeměmi</td><td>Turecko, Libye, Maroko – placená spolupráce</td><td>Mexiko, Guatemala – bezpečné třetí země</td></tr>
+<tr><td>Nejpostiženější oblasti</td><td>Itálie, Řecko, Španělsko, Německo, Švédsko</td><td>Texas, Arizona, California, New York, Illinois</td></tr>
+<tr><td>Aktuální trend</td><td>Zpřísňování, Nový Pakt o migraci (2024)</td><td>Masové deportace pod Trumpem (2025–)</td></tr>
+</tbody>
+</table>
+<div class="tcol">
+${card('Klíčový rozdíl – EU','27 vlád, 27 přístupů','Největší slabinou EU je roztříštěnost. Každý stát má jiné azylové standardy, jiné dávky, jiná pravidla. Migranti si vybírají nejštědřejší destinaci – tzv. asylum shopping. Společná politika existuje jen na papíře.','eu-c')}
+${card('Klíčový rozdíl – USA','Federální vs. státní pravomoci','Imigrační politika je federální, ale náklady nesou státy a města. Sanctuary cities odmítají spolupracovat s deportacemi. Napětí mezi federální vládou a státy jako Texas je chronické a nevyřešené.','us-c')}
+</div>
+<div class="pq" style="margin-top:2rem;">"Ani EU, ani USA zatím nenašly funkční model, jak zvládat migraci – bezpečně a s respektem k vlastním občanům zároveň."</div>
+</div></div>`
+};
+
+function go(page){
+  const app=document.getElementById('app');
+  app.classList.add('out');
+  setTimeout(()=>{
+    app.innerHTML=P[page]();
+    app.classList.remove('out');
+    document.querySelectorAll('nav button[data-p]').forEach(b=>b.classList.toggle('active',b.dataset.p===page));
+    if(page==='graf')initChart();
+    window.scrollTo({top:0,behavior:'smooth'});
     
-    let datasets = [];
-    if (type === 'both' || type === 'eu') {
-      datasets.push({
-        label: '🇪🇺 EU – azyl',
-        data: euData,
-        borderColor: '#003399',
-        backgroundColor: 'rgba(0, 51, 153, 0.15)',
-        borderWidth: 2.5,
-        pointRadius: 4,
-        tension: 0.3,
-        fill: true
-      });
-    }
-    if (type === 'both' || type === 'usa') {
-      datasets.push({
-        label: '🇺🇸 USA – hranice',
-        data: usaData,
-        borderColor: '#b22234',
-        backgroundColor: 'rgba(178, 34, 52, 0.15)',
-        borderWidth: 2.5,
-        pointRadius: 4,
-        tension: 0.3,
-        fill: true
-      });
-    }
+  },210);
+}
 
-    if (chart) chart.destroy();
 
-    chart = new Chart(ctx, {
-      type: 'line',
-      data: { labels, datasets },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: true,
-            labels: { font: { size: 12 }, color: '#1a1208', padding: 15 }
-          }
+function initChart(){
+  setTimeout(()=>{
+    const c=document.getElementById('mc');
+    if(!c)return;
+    if(CI){CI.destroy();CI=null;}
+    CI=new Chart(c.getContext('2d'),{
+      type:'line',
+      data:{labels:YR,datasets:[Object.assign({},EDS),Object.assign({},UDS)]},
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        interaction:{mode:'index',intersect:false},
+        plugins:{
+          legend:{labels:{font:{size:13},color:'#1a1208',padding:18}},
+          tooltip:{backgroundColor:'#1a1208',padding:11,callbacks:{label:x=>` ${x.dataset.label}: ${x.parsed.y.toLocaleString('cs-CZ')} tis.`}}
         },
-        scales: {
-          y: {
-            beginAtZero: true,
-            grid: { color: 'rgba(200, 184, 154, 0.3)' },
-            ticks: { color: '#6b5f4e', font: { size: 11 }, callback: v => v + ' tis.' }
-          },
-          x: {
-            grid: { color: 'rgba(200, 184, 154, 0.2)' },
-            ticks: { color: '#6b5f4e', font: { size: 11 } }
-          }
+        scales:{
+          x:{grid:{color:'rgba(200,184,154,0.4)'},ticks:{color:'#6b5f4e'}},
+          y:{grid:{color:'rgba(200,184,154,0.4)'},ticks:{color:'#6b5f4e',callback:v=>v+' tis.'},beginAtZero:true}
         }
       }
     });
-
-    document.querySelectorAll('.chart-btn').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
-  }
-
-  window.addEventListener('load', () => showChart({target: document.querySelector('.chart-btn')}, 'both'));
-</script>
-</body>
-</html>
+  },60);
+}
+function sw(t,el){
+  if(!CI)return;
+  let ds=[];
+  if(t==='both'||t==='eu')ds.push(Object.assign({},EDS));
+  if(t==='both'||t==='usa')ds.push(Object.assign({},UDS));
+  CI.data.datasets=ds;CI.update('active');
+  document.querySelectorAll('.cbtn').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+}
+go(window.location.hash.replace('#','')||'home');
+</script></body></html>
